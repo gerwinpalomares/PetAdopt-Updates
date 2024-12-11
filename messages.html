@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetAdopt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="output.css">
+  
+</head>
+<body class="bg-black text-white font-sans">
+
+  <header class="bg-black text-white fixed top-0 w-full z-10 shadow-lg">
+    <nav class="bg-orange-500 p-4 flex justify-between items-center">
+     
+      <div class="text-xl font-bold">PetAdopt</div>
+  
+      
+      <button id="menuToggle" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+  
+      
+      <div id="navMenu" class="hidden md:flex items-center space-x-4 md:space-x-6">
+        <button id="profileButton" onclick="window.location.href='profile.html'" class="bg-white text-black font-bold px-4 py-2 rounded-lg">
+          Profile
+        </button>
+        <button id="logoutButton" onclick="window.location.href = 'home.html'" class="bg-yellow-400 hover:bg-red-600 text-black font-bold py-2 px-4 rounded">
+          Logout
+        </button>
+      </div>
+    </nav>
+  
+   
+    <div id="mobileMenu" class="hidden bg-orange-500 text-black md:hidden space-y-2 p-4">
+      <button onclick="window.location.href='profile.html'" class="block w-full text-left px-4 py-2 hover:bg-yellow-400 rounded">
+        Profile
+      </button>
+      <button onclick="window.location.href = 'home.html'" class="block w-full text-left px-4 py-2 hover:bg-red-600 rounded">
+        Logout
+      </button>
+    </div>
+  </header>
+  
+  <script>
+   
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navMenu = document.getElementById('navMenu');
+  
+    menuToggle.addEventListener('click', () => {
+      
+      mobileMenu.classList.toggle('hidden');
+    });
+  
+    
+    function logout() {
+      window.location.href = 'home.html';
+    }
+  </script>
+  
+
+
+  <section class="pt-32 pb-16 flex flex-col items-center">
+    <h2 class="text-3xl font-bold text-orange-500 mb-10">Messages</h2>
+    <div class="bg-yellow-50 shadow-lg rounded p-6 w-96 text-center">
+      <p class="text-lg text-black mb-6">No available messages.</p>
+      <button onclick="redirectToPetsPage()" class="bg-yellow-400 hover:bg-orange-500 text-black font-bold py-3 px-6 rounded transition duration-300">
+        Exit
+      </button>
+    </div>
+  </section>
+
+  <script>
+    function redirectToPetsPage() {
+      window.location.href = 'pets.html'; 
+    }
+    function logout() {
+      alert('You have been logged out!');
+      window.location.href = 'index.html'; 
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PetAdopt</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="output.css">
+
+</head>
+<body class="bg-black text-white font-sans">
+  <header class="bg-black text-white fixed top-0 w-full z-10 shadow-lg">
+    <div class="container mx-auto flex items-center justify-between px-6 py-4">
+      <div class="text-2xl font-bold text-yellow-400">PetAdopt</div>
+      
+     
+      <button id="menuToggle" class="md:hidden text-yellow-400 focus:outline-none">
+        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+      </button>
+  
+      
+      <nav id="navMenu" class="hidden md:flex space-x-6">
+        <a href="#welcome" class="text-white hover:text-yellow-400">Home</a>
+        <a href="#featured-pets" class="text-white hover:text-yellow-400">Featured Pets</a>
+        <a href="#contact" class="text-white hover:text-yellow-400">Contact</a>
+      </nav>
+  
+      <button id="openLoginModal" class="bg-orange-500 hover:bg-yellow-400 text-black font-bold py-2 px-4 rounded md:ml-6">
+        Login / Sign Up
+      </button>
+    </div>
+  
+   
+    <div id="mobileMenu" class="hidden bg-black text-white md:hidden">
+      <a href="#welcome" class="block py-2 px-4 text-white hover:bg-yellow-400 hover:text-black">Home</a>
+      <a href="#featured-pets" class="block py-2 px-4 text-white hover:bg-yellow-400 hover:text-black">Featured Pets</a>
+      <a href="#contact" class="block py-2 px-4 text-white hover:bg-yellow-400 hover:text-black">Contact</a>
+    </div>
+  </header>
+  
+  <script>
+    
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const navMenu = document.getElementById('navMenu');
+  
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  
+    
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+  </script>
+
+  <section id="welcome" class="h-screen flex flex-col items-center justify-center bg-cover bg-center" style="background-image: url('pannerpets.png');">
+    <div class="bg-black bg-opacity-50 p-6 rounded">
+      <h1 class="text-5xl font-bold text-orange-500 mb-4">Welcome to PetAdopt!</h1>
+      <p class="text-lg text-white">Connecting pets with loving families. Your journey to adopt starts here.</p>
+      <button onclick="openLoginModal()" class="mt-6 bg-yellow-400 hover:bg-orange-500 text-black font-bold py-3 px-6 rounded transition duration-300">
+        Get Started
+      </button>
+    </div>
+  </section>
+
+  <section id="featured-pets" class="py-16 bg-white text-black">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center text-orange-500 mb-10">Featured Pets</h2>
+      <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="bg-yellow-50 shadow-lg rounded overflow-hidden hover:shadow-2xl transition duration-300">
+          <img src="labra.webp" alt="Pet 1" class="w-full">
+          <div class="p-4">
+            <h3 class="font-bold text-lg text-orange-500">Buddy</h3>
+            <p class="text-gray-700">A friendly Labrador ready for adoption.</p>
+          </div>
+        </div>
+        <div class="bg-yellow-50 shadow-lg rounded overflow-hidden hover:shadow-2xl transition duration-300">
+          <img src="TABBY.jpg" alt="Pet 2" class="w-full">
+          <div class="p-4">
+            <h3 class="font-bold text-lg text-orange-500">Mittens</h3>
+            <p class="text-gray-700">An adorable tabby cat looking for a loving home.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="bg-black text-white py-8">
+    <div class="container mx-auto px-6 text-center">
+      <h3 class="text-xl font-bold mb-4">Stay Connected</h3>
+      <div class="flex justify-center space-x-4 mb-6">
+        <a href="#" class="text-yellow-400 hover:text-orange-500">Facebook</a>
+        <a href="#" class="text-yellow-400 hover:text-orange-500">Twitter</a>
+        <a href="#" class="text-yellow-400 hover:text-orange-500">Instagram</a>
+      </div>
+      <p class="text-gray-400 text-sm">GUI: Abriel Linga.</p>
+    </div>
+  </footer>
+
+  <div id="loginModal" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white text-black p-6 rounded shadow-lg w-96">
+      <button class="text-red-500 float-right" onclick="closeModal('loginModal')">&times;</button>
+      <h2 class="text-xl font-bold mb-4">Login</h2>
+      <input type="email" id="loginEmail" placeholder="abriel@linga.com" class="mb-4 p-2 w-full rounded bg-yellow-100">
+      <input type="password" id="loginPassword" placeholder="linga" class="mb-4 p-2 w-full rounded bg-yellow-100">
+      <button onclick="login()" class="bg-yellow-400 hover:bg-orange-500 text-black font-bold py-2 px-4 rounded w-full">Login</button>
+      <p class="mt-4 text-center">Don't have an account? <button onclick="switchToSignup()" class="text-orange-500">Sign Up</button></p>
+    </div>
+  </div>
+  
+  <div id="signupModal" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+    <div class="bg-white text-black p-6 rounded shadow-lg w-96">
+      <button class="text-red-500 float-right" onclick="closeModal('signupModal')">&times;</button>
+      <h2 class="text-xl font-bold mb-4">Sign Up</h2>
+      <input type="text" id="firstName" placeholder="First Name" class="mb-4 p-2 w-full rounded bg-yellow-100">
+      <input type="text" id="middleName" placeholder="Middle Name" class="mb-4 p-2 w-full rounded bg-yellow-100">
+      <input type="text" id="lastName" placeholder="Last Name" class="mb-4 p-2 w-full rounded bg-yellow-100">
+      <input type="email" id="signupEmail" placeholder="Email" class="mb-4 p-2 w-full rounded bg-yellow-100">
+      <input type="password" id="signupPassword" placeholder="Password" class="mb-4 p-2 w-full rounded bg-yellow-100">
+      <button onclick="signup()" class="bg-yellow-400 hover:bg-orange-500 text-black font-bold py-2 px-4 rounded w-full">Sign Up</button>
+    </div>
+  </div>
+  
+  <script>
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.add('hidden');
+    }
+
+    function switchToSignup() {
+      closeModal('loginModal');
+      document.getElementById('signupModal').classList.remove('hidden');
+    }
+
+    function openLoginModal() {
+      document.getElementById('loginModal').classList.remove('hidden');
+    }
+
+    function login() {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+
+      if (email === 'abriel@linga.com' && password === 'linga') {
+        window.location.href = 'pets.html';
+      } else {
+        alert('Invalid email or password!');
+      }
+    }
+
+    function signup() {
+      const fields = ['firstName', 'middleName', 'lastName', 'signupEmail', 'signupPassword'];
+      const isFilled = fields.every((id) => document.getElementById(id).value.trim() !== '');
+
+      if (isFilled) {
+        window.location.href = 'pets.html'; 
+      } else {
+        alert('Please fill in all fields!');
+      }
+    }
+
+    document.getElementById('openLoginModal').onclick = function() {
+      document.getElementById('loginModal').classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
+
